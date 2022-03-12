@@ -11,7 +11,7 @@ const initConfig = async(req = request, res = response)=>{
 
     const roles = await Rol.findAll();
 
-    if(!roles){
+    if(roles.length === 0){
         const admin = await Rol.create({ nombre: 'SYS_ADMIN'});
         const project = await Rol.create({ nombre: 'PROJECT_ADMIN'});
         const user = await Rol.create({ nombre: 'USER'});
