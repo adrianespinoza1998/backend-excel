@@ -44,7 +44,7 @@ const initConfig = async(req = request, res = response)=>{
         });
     }else{
         res.status(200).json({
-            msg: `La configuración inicial ya esta cargada`
+            msg: `La configuración inicial ya esta cargada, ${JSON.stringify(roles)}`
         });
     }
 }
