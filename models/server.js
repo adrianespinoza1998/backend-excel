@@ -6,6 +6,7 @@ const itemRoutes = require("../routes/itemRoutes");
 const rolRoutes = require("../routes/rolRoutes");
 const usuarioRoutes = require("../routes/usuarioRoutes");
 const authRoutes = require("../routes/authRoutes");
+const initRoutes = require("../routes/initRoutes");
 
 class Server{
 
@@ -18,7 +19,8 @@ class Server{
             items: '/api/items',
             roles: '/api/rol',
             usuario: '/api/usuario',
-            auth: '/api/auth'
+            auth: '/api/auth',
+            init: '/api/init'
         }
 
         this.dbConnect();
@@ -54,6 +56,7 @@ class Server{
         this.app.use(this.path.roles, rolRoutes);
         this.app.use(this.path.usuario, usuarioRoutes);
         this.app.use(this.path.auth, authRoutes);
+        this.app.use(this.path.init, initRoutes);
     }
 }
 
