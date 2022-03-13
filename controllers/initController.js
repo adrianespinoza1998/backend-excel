@@ -31,7 +31,8 @@ const initConfig = async(req = request, res = response)=>{
             apPaterno: 'ESPINOZA',
             apMaterno: 'AREVALO',
             correo: 'ADRIAN@ADMIN.CL',
-            contrasena
+            contrasena,
+            idRo: 1
         });
 
         const projectAdmin = await Usuario.create({
@@ -39,7 +40,8 @@ const initConfig = async(req = request, res = response)=>{
             apPaterno: 'ESPINOZA2',
             apMaterno: 'AREVALO2',
             correo: 'ADRIAN@PROJECT.CL',
-            contrasena
+            contrasena,
+            idRol: 2
         });
 
         res.status(200).json({
@@ -47,7 +49,8 @@ const initConfig = async(req = request, res = response)=>{
             project,
             user,
             sysAdmin,
-            projectAdmin
+            projectAdmin,
+            idRol: 3
         });
     }
 }
