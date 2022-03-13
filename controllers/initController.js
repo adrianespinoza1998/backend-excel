@@ -43,15 +43,6 @@ const initConfig = async(req = request, res = response)=>{
             contrasena,
             idRol: 2
         });
-
-        res.status(200).json({
-            admin,
-            project,
-            user,
-            sysAdmin,
-            projectAdmin,
-            idRol: 3
-        });
     }
 }
 
