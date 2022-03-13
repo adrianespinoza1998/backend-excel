@@ -32,7 +32,7 @@ const initConfig = async(req = request, res = response)=>{
             apMaterno: 'AREVALO',
             correo: 'ADRIAN@ADMIN.CL',
             contrasena,
-            idRo: 1
+            idRol: 1
         });
 
         const projectAdmin = await Usuario.create({
