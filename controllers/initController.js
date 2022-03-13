@@ -10,12 +10,19 @@ const initConfig = async(req = request, res = response)=>{
     await Item.sync();
 
     const roles = await Rol.findAll();
+    const usuarios = await Usuario.findAll();
 
     if(roles.length === 0){
         const admin = await Rol.create({ nombre: 'SYS_ADMIN'});
         const project = await Rol.create({ nombre: 'PROJECT_ADMIN'});
         const user = await Rol.create({ nombre: 'USER'});
+    }else{
+        res.status(200).json({
+            msg: `La configuración inicial ya esta cargada, ${JSON.stringify(roles)}`
+        });
+    }
 
+    if(usuarios.length===0){
         const salt = bcryptjs.genSaltSync();
         const contrasena = bcryptjs.hashSync('1234678', salt);
 
@@ -41,10 +48,6 @@ const initConfig = async(req = request, res = response)=>{
             user,
             sysAdmin,
             projectAdmin
-        });
-    }else{
-        res.status(200).json({
-            msg: `La configuración inicial ya esta cargada, ${JSON.stringify(roles)}`
         });
     }
 }
