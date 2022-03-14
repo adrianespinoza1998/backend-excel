@@ -56,7 +56,7 @@ const crearUsuario = async (req = request, res = response) => {
         });
 
         if (buscarUsuario) {
-            return res.status(400).json({
+            return res.status(200).json({
                 msg: `Usuario con el correo: ${correo} ya esta registrado`
             });
         }
@@ -77,7 +77,7 @@ const crearUsuario = async (req = request, res = response) => {
         res.status(201).json(usuario);
     } catch (error) {
         console.error(error);
-        res.status(400).json({
+        res.status(200).json({
             msg: `Error al crear usuario`
         });
     }
@@ -97,13 +97,13 @@ const editarUsuario = async (req = request, res = response) => {
         const buscarUsuario = await Usuario.findByPk(id);
 
         if (!buscarUsuario) {
-            return res.status(400).json({
+            return res.status(200).json({
                 msg: `Usuario con el id: ${id} no existe`
             });
         }
 
         if (!buscarUsuario.estado) {
-            return res.status(400).json({
+            return res.status(200).json({
                 msg: `Usuario con el id: ${id} no existe`
             });
         }
@@ -126,7 +126,7 @@ const editarUsuario = async (req = request, res = response) => {
         res.status(201).json(buscarUsuario);
     } catch (error) {
         console.error(error);
-        res.status(400).json({
+        res.status(200).json({
             msg: `Error al editar usuario`
         });
     }
@@ -143,13 +143,13 @@ const desactivarUsuario = async (req = request, res = response) => {
     const usuario = await Usuario.findByPk(id);
 
     if(!usuario) {
-        return res.status(404).json({
+        return res.status(200).json({
             msg: `Usuario con el id: ${id} no existe`
         });
     }
 
     if(!usuario.estado){
-        return res.status(400).json({
+        return res.status(200).json({
             msg: `Usuario con el id: ${id} ya esta desactivado`
         });
     }

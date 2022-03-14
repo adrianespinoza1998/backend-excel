@@ -20,7 +20,7 @@ const crearRol = async (req = request, res = response) => {
         res.status(200).json(rol);
     } catch (error) {
         console.error(error);
-        res.status(400).json({
+        res.status(200).json({
             msg: `Error al crear rol`
         });
     }
@@ -78,7 +78,7 @@ const editarRol = async (req = request, res = response) => {
 
         //Rol no existe
         if(!rol){
-            res.status(404).json({
+            res.status(200).json({
                 msg: `Rol con el id ${id} no encontrado`
             });
         }
@@ -95,13 +95,13 @@ const editarRol = async (req = request, res = response) => {
 
             res.status(200).json(rol);
         } else {
-            res.status(404).json({
+            res.status(200).json({
                 msg: `Rol con el id ${id} no encontrado`
             });
         }
     } catch (error) {
         console.log(error);
-        res.status(400).json({
+        res.status(200).json({
             msg: `Error al editar rol`
         });
     }
@@ -118,7 +118,7 @@ const desactivarRol = async (req = request, res = response) => {
     const rol = await Rol.findByPk(id);
 
     if(!rol){
-        return res.status(404).json({
+        return res.status(200).json({
             msg: `Rol con el id ${id} no encontrado`
         });
     }
@@ -135,7 +135,7 @@ const desactivarRol = async (req = request, res = response) => {
 
         res.status(200).json(rol);
     } else {
-        res.status(404).json({
+        res.status(200).json({
             msg: `Rol con el id ${id} no encontrado`
         });
     }
