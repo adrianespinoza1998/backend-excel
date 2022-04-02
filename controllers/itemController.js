@@ -1,8 +1,8 @@
 const {request, response} = require('express');
-const {Item} = require('../models/Item');
+const {Item} = require('../models/modelsIndex');
 
 const getItems = async(req = request, res = response)=>{
-    Item.sync();
+    await Item.sync();
 
     const items = await Item.findAll();
 
@@ -11,9 +11,9 @@ const getItems = async(req = request, res = response)=>{
 
 const crearItem = async(req = request, res = response)=>{
 
-    Item.sync();
+    await Item.sync();
 
-    const {items} = req.body;
+    const {items, idProyecto} = req.body;
 
     try{
         for(let i= 1; i<items.length; i++){
@@ -22,7 +22,9 @@ const crearItem = async(req = request, res = response)=>{
                 wbs: items[i][1],
                 descripcion: items[i][2],
                 unidad: items[i][3],
-                cantidad: items[i][4]
+                cantidad: items[i][4],
+                idPieza: items[i][5],
+                idProyecto
             });
     
             await item.save();

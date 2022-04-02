@@ -27,6 +27,10 @@ const Item = sequelize.define('Item', {
     cantidad: {
         type: DataTypes.INTEGER,
         allowNull: false
+    },
+    idPieza: {
+        type: DataTypes.INTEGER,
+        allowNull: true
     }
 });
 

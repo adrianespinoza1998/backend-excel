@@ -7,6 +7,7 @@ const rolRoutes = require("../routes/rolRoutes");
 const usuarioRoutes = require("../routes/usuarioRoutes");
 const authRoutes = require("../routes/authRoutes");
 const initRoutes = require("../routes/initRoutes");
+const proyectoRoutes = require("../routes/proyectoRoutes");
 
 class Server{
 
@@ -20,7 +21,8 @@ class Server{
             roles: '/api/rol',
             usuario: '/api/usuario',
             auth: '/api/auth',
-            init: '/api/init'
+            init: '/api/init',
+            proyecto: '/api/proyecto'
         }
 
         this.dbConnect();
@@ -57,6 +59,7 @@ class Server{
         this.app.use(this.path.usuario, usuarioRoutes);
         this.app.use(this.path.auth, authRoutes);
         this.app.use(this.path.init, initRoutes);
+        this.app.use(this.path.proyecto, proyectoRoutes);
     }
 }
 

@@ -14,7 +14,13 @@ const validarJwt = async(req = request,res = response, next)=> {
 
     try{
 
-        const finalToken = token.slice(1, token.length - 1)
+        let finalToken;
+
+        if(token.length>139){
+            finalToken = token.slice(1, token.length - 1);
+        }else{
+            finalToken = token;
+        }
         
         const {uid} = jwt.verify(finalToken, process.env.SECRET_KEY);
         

@@ -78,7 +78,7 @@ const editarRol = async (req = request, res = response) => {
 
         //Rol no existe
         if(!rol){
-            res.status(200).json({
+            return res.status(200).json({
                 msg: `Rol con el id ${id} no encontrado`
             });
         }
