@@ -16,6 +16,10 @@ const Proyecto = sequelize.define("Proyecto", {
         type: DataTypes.BOOLEAN,
         allowNull: false,
         defaultValue: true
+    },
+    urlModelo: {
+        type: DataTypes.STRING,
+        allowNull: true
     }
 });
 

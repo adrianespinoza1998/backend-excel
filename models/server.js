@@ -1,5 +1,6 @@
 const express = require("express");
 const cors = require("cors");
+const fileUpload = require("express-fileupload");
 
 const { sequelize } = require("../database/dbConfig");
 const itemRoutes = require("../routes/itemRoutes");
@@ -8,6 +9,7 @@ const usuarioRoutes = require("../routes/usuarioRoutes");
 const authRoutes = require("../routes/authRoutes");
 const initRoutes = require("../routes/initRoutes");
 const proyectoRoutes = require("../routes/proyectoRoutes");
+const uploadRoutes = require("../routes/uploadRoutes");
 
 class Server{
 
@@ -22,7 +24,8 @@ class Server{
             usuario: '/api/usuario',
             auth: '/api/auth',
             init: '/api/init',
-            proyecto: '/api/proyecto'
+            proyecto: '/api/proyecto',
+            upload: '/api/upload'
         }
 
         this.dbConnect();
@@ -36,6 +39,11 @@ class Server{
         this.app.use(express.static('public'));
         this.app.use(cors());
         this.app.use(express.json());
+        this.app.use(fileUpload({
+            useTempFiles: true,
+            tempFileDir: '/tmp/',
+            createParentPath: true
+        }));
     }
 
     listen(){
@@ -60,6 +68,7 @@ class Server{
         this.app.use(this.path.auth, authRoutes);
         this.app.use(this.path.init, initRoutes);
         this.app.use(this.path.proyecto, proyectoRoutes);
+        this.app.use(this.path.upload, uploadRoutes);
     }
 }
 

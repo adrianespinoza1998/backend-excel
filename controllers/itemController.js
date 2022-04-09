@@ -9,14 +9,31 @@ const getItems = async(req = request, res = response)=>{
     res.status(200).json(items);
 }
 
+const getItemsXProyecto = async(req = request, res = response)=>{
+    await Item.sync();
+
+    const {id} = req.params;
+
+    const items = await Item.findAll({
+        where: {
+            idProyecto: id
+        }
+    });
+
+    res.status(200).json(items);
+}
+
 const crearItem = async(req = request, res = response)=>{
 
     await Item.sync();
 
     const {items, idProyecto} = req.body;
 
+    console.log(items, idProyecto);
+
     try{
-        for(let i= 1; i<items.length; i++){
+        
+        for(let i= 0; i<items.length; i++){
             const item = await Item.create({
                 bmp: items[i][0],
                 wbs: items[i][1],
@@ -44,5 +61,6 @@ const crearItem = async(req = request, res = response)=>{
 
 module.exports = {
     getItems,
+    getItemsXProyecto,
     crearItem
 }
