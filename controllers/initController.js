@@ -21,7 +21,7 @@ const initConfig = async(req = request, res = response)=>{
 
         if(usuarios.length===0){
             const salt = bcryptjs.genSaltSync();
-            const contrasena = bcryptjs.hashSync('1234678', salt);
+            const contrasena = bcryptjs.hashSync('12345678', salt);
     
             const sysAdmin = await Usuario.create({
                 nombre: 'ADRIAN',
